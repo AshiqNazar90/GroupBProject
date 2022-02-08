@@ -22,12 +22,11 @@ namespace GroupBProject.Controllers
         [Route("GetWeather")]
         public string GetWeather()
         {
-       
-            var client = new RestClient("http://api.weatherapi.com/v1/current.json?key=d90506ffda3441ba9eb41606220702&q=London&aqi=no");
+
+            var client = new RestClient("http://api.weatherapi.com/v1/current.json?key=d90506ffda3441ba9eb41606220702&q=London&aqi=yes");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
-            IRestResponse response = (IRestResponse)client.Execute(request);
-            Console.WriteLine(response.Content);
+            IRestResponse response = client.Execute(request);
             return response.Content;
         }
 
