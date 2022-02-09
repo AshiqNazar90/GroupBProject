@@ -28,6 +28,7 @@ namespace GroupBProject.Controllers
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             return response.Content;
+          
         }
 
         // POST api/<WeatherController>

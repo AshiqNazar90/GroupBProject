@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using GroupBProject.Model;
+using GroupBProject.Utill;
+using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,7 +12,14 @@ namespace GroupBProject.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        // GET: api/<EmployeeController>
+        IHelper helper;
+
+        public EmployeeController(IHelper helper)
+        {
+            this.helper = helper;
+        }
+
+        //GET: api/<EmployeeController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -16,11 +27,14 @@ namespace GroupBProject.Controllers
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetEmployee")]
         public string Get(int id)
         {
+            this.helper.EmployeeFileWrite();
             return "value";
         }
+
 
         // POST api/<EmployeeController>
         [HttpPost]
