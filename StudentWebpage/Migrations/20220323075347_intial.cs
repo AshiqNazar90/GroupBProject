@@ -4,7 +4,7 @@
 
 namespace StudentWebpage.Migrations
 {
-    public partial class first : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

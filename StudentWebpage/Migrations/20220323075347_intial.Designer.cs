@@ -11,8 +11,8 @@ using StudentWebpage.Data;
 namespace StudentWebpage.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
-    [Migration("20220215061138_first")]
-    partial class first
+    [Migration("20220323075347_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
