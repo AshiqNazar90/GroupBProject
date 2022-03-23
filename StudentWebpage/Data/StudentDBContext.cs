@@ -5,10 +5,11 @@ namespace StudentWebpage.Data
 {
     public class StudentDBContext : DbContext
     {
-        public DbSet<Student> Students { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public StudentDBContext(DbContextOptions<StudentDBContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=Testdb20;Trusted_Connection=True;");
+
         }
+        public DbSet<Student> Students { get; set; }
+      
     }
 }
