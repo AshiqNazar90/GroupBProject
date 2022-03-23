@@ -10,10 +10,9 @@ namespace GroupBProject.Utill
 {
     public class Helper : IHelper
     {
-        public string EmployeeFileWrite()
+        public string EmployeeFileWrite(Employee newEmployee)
         {
             {
-                Employee employee = new Employee();
                 // Creating an instance
                 // of ExcelPackage
                 ExcelPackage.LicenseContext = LicenseContext.Commercial;
@@ -34,19 +33,21 @@ namespace GroupBProject.Utill
                 workSheet.Row(1).Style.Font.Bold = true;
 
                 // Header of the Excel sheet
-                workSheet.Cells[1, 1].Value = "Name";
-                workSheet.Cells[1, 2].Value = "Age";
-                workSheet.Cells[1, 3].Value = "DOB";
+                workSheet.Cells[1, 1].Value = "ID";
+                workSheet.Cells[1, 2].Value = "Name";
+                workSheet.Cells[1, 3].Value = "Age";
+                workSheet.Cells[1, 4].Value = "DOB";
+                workSheet.Cells[1, 5].Value = "Designation";
 
                 //Second line of excel sheet
 
-                workSheet.Cells[2, 1].Value = "Ashiq";
-                workSheet.Cells[2, 2].Value = "30";
-                workSheet.Cells[2, 3].Value = "1990";
+                workSheet.Cells[2, 1].Value = newEmployee.ID;
+                workSheet.Cells[2, 2].Value=newEmployee.Name;
+                workSheet.Cells[2, 3].Value = newEmployee.Age;
+                workSheet.Cells[2, 4].Value = newEmployee.DOB;
+                workSheet.Cells[2, 5].Value = newEmployee.Designation;
 
-                workSheet.Cells[3, 1].Value = "Rinshad";
-                workSheet.Cells[3, 2].Value = "25";
-                workSheet.Cells[3, 3].Value = "1997";
+
                 // file name with .xlsx extension 
                 string p_strPath = @"C:\Users\user\source\repos\GroupBProject\GroupBProject\StaticFiles\Sample.xlsx";
 

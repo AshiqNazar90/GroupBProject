@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
+using GroupBProject.DB;
 using GroupBProject.Model;
 using GroupBProject.Utill;
 using Microsoft.AspNetCore.Mvc;
@@ -13,26 +14,46 @@ namespace GroupBProject.Controllers
     public class EmployeeController : ControllerBase
     {
         IHelper helper;
+     
 
         public EmployeeController(IHelper helper)
         {
             this.helper = helper;
+          
         }
 
         //GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("Getdetails")]
+        public IEnumerable<Employee> Getdetails()
         {
-            return new string[] { "value1", "value2" };
+            EmployeeDBContext dbContext = new EmployeeDBContext();
+            var result= dbContext.Employees.ToList();
+            return result;
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet]
-        [Route("GetEmployee")]
-        public string Get(int id)
+        [HttpPost]
+        [Route("SaveEmployee")]
+        public Employee SaveEmployee(Employee newEmployee)
         {
-            this.helper.EmployeeFileWrite();
-            return "value";
+            try
+            {
+                //this.helper.EmployeeFileWrite(newEmployee);
+
+                EmployeeDBContext dbContext = new EmployeeDBContext();
+                //Add a row in table
+                dbContext.Add(newEmployee);
+                dbContext.SaveChanges();
+
+                return newEmployee;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 
